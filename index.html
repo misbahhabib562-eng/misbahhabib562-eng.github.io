@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Misbah H., Senior QA Engineer: manual, API, Playwright automation and AI testing for web and mobile products.">
+<title>Misbah's QA Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: one 1040px column; a test-run status strip as the hero, then services, case studies, tabbed samples, process. */
+:root{
+  --bg:#ffffff; --surface:#ffffff; --sunk:#f1f4f8; --line:#d9dfe8;
+  --ink:#111827; --muted:#3f4a5e;
+  --accent:#2447c9; --accent-soft:#e3e9fb;
+  --pass:#17804f; --pass-soft:#e0f2e9; --fail:#b23a2a; --fail-soft:#f8e4e0; --warn:#9a6400; --warn-soft:#f8eed9;
+  color-scheme:light;
+  --display:"Familjen Grotesk","Helvetica Neue",Arial,sans-serif;
+  --body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.6;padding-inline:20px;padding-block:28px 56px}
+.wrap{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:72px}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+h1,h2,h3{font-family:var(--display);line-height:1.15;margin:0;text-wrap:balance}
+h2{font-size:clamp(26px,3.4vw,34px);font-weight:700}
+h3{font-size:20px;font-weight:600}
+p{margin:0;max-width:65ch}
+.mono{font-family:var(--mono)}
+.label{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.section-head{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.section-head p{color:var(--muted)}
+
+/* nav */
+nav{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.brand{font-family:var(--display);font-weight:700;font-size:19px}
+.navlinks{display:flex;gap:18px;flex-wrap:wrap;font-size:15px}
+.navlinks a{color:var(--muted);text-decoration:none}
+.navlinks a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#fff;font-weight:700;text-decoration:none;padding:12px 20px;border-radius:8px;font-size:15.5px}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(36px,5.6vw,58px);font-weight:700;letter-spacing:-.015em}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero-copy{display:flex;flex-direction:column;gap:20px;min-width:0}
+.hero-copy p{font-size:18.5px;color:var(--muted)}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.run{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;min-width:0}
+.run-top{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--sunk)}
+.run-body{padding:6px 16px 14px;font-family:var(--mono);font-size:13.5px}
+.run-row{display:flex;gap:10px;align-items:baseline;padding:7px 0;border-bottom:1px dashed var(--line)}
+.run-row:last-child{border-bottom:none}
+.run-row .t{flex:1;min-width:0}
+.ok{color:var(--pass);font-weight:600}.no{color:var(--fail);font-weight:600}
+.run-foot{display:flex;gap:14px;flex-wrap:wrap;padding:12px 16px;border-top:1px solid var(--line);font-family:var(--mono);font-size:13px}
+
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:-28px}
+.fact{background:var(--surface);padding:18px 20px}
+.fact b{display:block;font-family:var(--display);font-size:28px;font-variant-numeric:tabular-nums}
+.fact span{color:var(--muted);font-size:14.5px}
+
+/* services */
+.services{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.svc{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.svc p{color:var(--muted);font-size:15px}
+.svc ul{margin:0;padding-left:18px;font-size:14.5px;color:var(--muted)}
+.price{margin-top:auto;padding-top:10px;font-family:var(--mono);font-size:13.5px;color:var(--ink)}
+.price b{font-size:17px}
+
+/* case studies */
+.cases{display:flex;flex-direction:column;gap:20px}
+.case{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:28px;display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.case > div{min-width:0;display:flex;flex-direction:column;gap:12px}
+.case .kind{display:flex;gap:8px;flex-wrap:wrap}
+.chip{font-family:var(--mono);font-size:12px;padding:3px 9px;border-radius:999px;background:var(--sunk);color:var(--muted)}
+.chip.pass{background:var(--pass-soft);color:var(--pass)}
+.chip.fail{background:var(--fail-soft);color:var(--fail)}
+.chip.warn{background:var(--warn-soft);color:var(--warn)}
+.case dl{margin:0;display:flex;flex-direction:column;gap:10px}
+.case dt{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.case dd{margin:2px 0 0}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.stat{background:var(--sunk);border-radius:10px;padding:14px 16px}
+.stat b{display:block;font-family:var(--display);font-size:26px;font-variant-numeric:tabular-nums}
+.stat span{font-size:14px;color:var(--muted)}
+.suites{display:flex;flex-direction:column;gap:8px}
+.suite{display:flex;justify-content:space-between;gap:12px;align-items:center;background:var(--sunk);border-radius:8px;padding:11px 14px;font-size:15px}
+.suite small{display:block;color:var(--muted);font-family:var(--mono);font-size:12.5px}
+
+/* samples tabs */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.tab{font:inherit;font-size:15px;padding:9px 16px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--muted);cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px;min-width:0}
+.bug-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.bug-id{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.box{background:var(--sunk);border-radius:10px;padding:14px 16px;min-width:0}
+.box.exp{border-left:4px solid var(--pass)}.box.act{border-left:4px solid var(--fail)}
+.box .label{margin-bottom:4px}
+.panel ol{margin:6px 0 0;padding-left:22px}
+.panel ol li{margin-bottom:4px}
+.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:15px;min-width:560px}
+th{text-align:left;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:10px 12px;border-bottom:1px solid var(--line)}
+td{padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:none}
+pre{margin:0;background:var(--sunk);border-radius:10px;padding:16px 18px;font-family:var(--mono);font-size:13.5px;line-height:1.6;overflow-x:auto}
+.note{font-size:13.5px;color:var(--muted);margin-top:14px}
+.stack{display:flex;flex-direction:column;gap:16px}
+
+/* process */
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;counter-reset:s;list-style:none;margin:0;padding:0}
+.steps li{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;counter-increment:s;min-width:0}
+.steps li::before{content:counter(s);display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-family:var(--mono);font-weight:600;font-size:13px;margin-bottom:10px}
+.steps b{display:block;margin-bottom:4px}
+.steps span{font-size:14.5px;color:var(--muted)}
+
+/* toolbox */
+.toolbox{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.tb{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
+.tb .label{margin-bottom:10px}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{font-size:14px;padding:5px 11px;border-radius:6px;background:var(--sunk)}
+
+/* closing */
+.closing{background:var(--ink);color:var(--bg);border-radius:16px;padding:36px;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.closing h2{color:var(--bg)}
+.closing p{color:var(--bg);opacity:.75;margin-top:8px}
+.closing .btn{background:var(--bg);color:var(--ink)}
+footer{color:var(--muted);font-size:14px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-top:-40px}
+
+@media (max-width:900px){
+  .hero,.case{grid-template-columns:1fr}
+  .services{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .toolbox{grid-template-columns:1fr}
+  .facts{grid-template-columns:1fr 1fr;margin-top:-36px}
+}
+@media (max-width:560px){
+  .services,.steps,.grid2,.stats{grid-template-columns:1fr}
+  .navlinks{display:none}
+  .case,.panel{padding:20px}
+}
+@media (prefers-reduced-motion:no-preference){.tab{transition:background .15s,color .15s}}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+<nav>
+  <span class="brand">Misbah H.</span>
+  <div class="navlinks"><a href="#services">Services</a><a href="#work">Work</a><a href="#samples">Samples</a><a href="#process">Process</a></div>
+  <a class="btn" href="https://www.upwork.com/freelancers/~012e09f951295df9e4" target="_blank" rel="noopener">Hire me on Upwork</a>
+</nav>
+
+<header class="hero">
+  <div class="hero-copy">
+    <span class="label">Senior QA Engineer · ISTQB certified · Lahore</span>
+    <h1>I find the bugs <em>before your users do.</em></h1>
+    <p>Manual, API, automation and AI testing for web and mobile products. Six years of owning QA end to end, from reading the requirements to signing off the release.</p>
+    <div class="ctas">
+      <a class="btn" href="https://www.upwork.com/freelancers/~012e09f951295df9e4" target="_blank" rel="noopener">Hire me on Upwork</a>
+      <a class="btn ghost" href="https://github.com/misbahhabib562-eng/qa-portfolio" target="_blank" rel="noopener">See my code on GitHub</a>
+    </div>
+  </div>
+  <div class="run" aria-label="Example test run">
+    <div class="run-top"><span class="label">latest run · qa-portfolio</span><span class="chip pass">passing</span></div>
+    <div class="run-body">
+      <div class="run-row"><span class="ok">✓</span><span class="t">login › locked-out user sees error</span></div>
+      <div class="run-row"><span class="ok">✓</span><span class="t">checkout › item total is correct</span></div>
+      <div class="run-row"><span class="ok">✓</span><span class="t">api › update without token → 403</span></div>
+      <div class="run-row"><span class="ok">✓</span><span class="t">api › deleted booking → 404</span></div>
+      <div class="run-row"><span class="ok">✓</span><span class="t">mobile › purchase on Pixel 7</span></div>
+    </div>
+    <div class="run-foot"><span class="ok">29 Playwright</span><span class="ok">22 Postman</span><span class="ok">18 JMeter · 0% errors</span></div>
+  </div>
+</header>
+
+<div class="facts">
+  <div class="fact"><b>6+ yrs</b><span>in QA</span></div>
+  <div class="fact"><b>1M+</b><span>users on the platform I test</span></div>
+  <div class="fact"><b>1,000+</b><span>test cases written</span></div>
+  <div class="fact"><b>3</b><span>platforms: web, iOS, Android</span></div>
+</div>
+
+<section id="services">
+  <div class="section-head">
+    <span class="label">Services</span>
+    <h2>What I can test for you</h2>
+    <p>Each of these is a fixed-price package on Upwork, so you know the scope and cost before we start.</p>
+  </div>
+  <div class="services">
+    <div class="svc"><h3>Manual QA</h3><p>Your web or mobile app tested like a real user would use it.</p><ul><li>Functional and regression</li><li>Cross-browser and devices</li><li>Usability issues</li></ul><div class="price">from <b>$30</b></div></div>
+    <div class="svc"><h3>API testing</h3><p>Backend checks before bugs reach your app.</p><ul><li>Status codes and data</li><li>Auth and permissions</li><li>Reusable Postman collection</li></ul><div class="price">from <b>$40</b></div></div>
+    <div class="svc"><h3>Playwright automation</h3><p>Your key flows tested automatically on every change.</p><ul><li>Page-object structure</li><li>HTML report with video</li><li>GitHub Actions CI</li></ul><div class="price">from <b>$60</b></div></div>
+    <div class="svc"><h3>AI and LLM testing</h3><p>Measure how often your chatbot gets things wrong.</p><ul><li>Hallucination and accuracy</li><li>Off-topic and safety prompts</li><li>DeepEval test suite</li></ul><div class="price">from <b>$80</b></div></div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="section-head">
+    <span class="label">Selected work</span>
+    <h2>Projects</h2>
+  </div>
+  <div class="cases">
+
+    <article class="case">
+      <div>
+        <div class="kind"><span class="chip">Client work · under NDA</span><span class="chip">2022 to present</span></div>
+        <h3>Consumer platform with 1M+ active users</h3>
+        <dl>
+          <div><dt>The product</dt><dd>A national consumer brand with 80+ physical locations, running on web, iOS and Android.</dd></div>
+          <div><dt>My role</dt><dd>I own QA on my own: test planning, risk assessment, test execution, defect triage with developers, and release sign-off.</dd></div>
+          <div><dt>What I did</dt><dd>Wrote and maintain over 1,000 manual test cases, tested REST APIs in Postman and Swagger, automated regression flows with Playwright, load-tested with JMeter, and tested an internal AI assistant built on Claude. I also mentored 4 junior QA engineers.</dd></div>
+        </dl>
+      </div>
+      <div>
+        <div class="stats">
+          <div class="stat"><b>1M+</b><span>active users</span></div>
+          <div class="stat"><b>80+</b><span>locations</span></div>
+          <div class="stat"><b>3</b><span>platforms</span></div>
+          <div class="stat"><b>1,000+</b><span>test cases</span></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="case">
+      <div>
+        <div class="kind"><span class="chip">Open source</span><span class="chip pass">all suites passing</span></div>
+        <h3>QA automation portfolio</h3>
+        <p>A full test setup for a demo web store and a demo booking API, built the way I'd set one up for a client. Every suite runs automatically on GitHub Actions on each push.</p>
+        <dl>
+          <div><dt>Includes</dt><dd>Test plan, 26 manual test cases, 7 documented bugs, Playwright UI and API tests with page objects, a Postman collection, and a JMeter load test.</dd></div>
+        </dl>
+        <a href="https://github.com/misbahhabib562-eng/qa-portfolio" target="_blank" rel="noopener">View the repository on GitHub →</a>
+      </div>
+      <div class="suites">
+        <div class="suite"><div>Playwright UI, desktop<small>login, sorting, cart, checkout</small></div><span class="ok">16/16</span></div>
+        <div class="suite"><div>Playwright UI, mobile<small>smoke tests on Pixel 7</small></div><span class="ok">4/4</span></div>
+        <div class="suite"><div>Playwright API<small>auth, CRUD, negative cases</small></div><span class="ok">9/9</span></div>
+        <div class="suite"><div>Postman / Newman<small>11 requests, schema and timing checks</small></div><span class="ok">22/22</span></div>
+        <div class="suite"><div>JMeter<small>18 requests, 121 ms average</small></div><span class="ok">0% errors</span></div>
+      </div>
+    </article>
+
+    <article class="case">
+      <div>
+        <div class="kind"><span class="chip">Client work · under NDA</span><span class="chip">2020 to 2022</span></div>
+        <h3>ERP system: web, mobile and barcode scanners</h3>
+        <dl>
+          <div><dt>The product</dt><dd>An ERP suite used across web, mobile, and handheld barcode scanner apps.</dd></div>
+          <div><dt>What I did</dt><dd>Functional, regression, sanity and performance testing before each release. Wrote and ran detailed test cases and tracked every defect to closure, working with project managers in Agile sprints using TFS.</dd></div>
+        </dl>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>3</b><span>app types: web, mobile, scanner</span></div>
+        <div class="stat"><b>2 yrs</b><span>of release testing</span></div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section id="samples">
+  <div class="section-head">
+    <span class="label">Samples</span>
+    <h2>How my reports look</h2>
+    <p>Examples in the format I use for client work. Details are from public practice apps or made up for illustration.</p>
+  </div>
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" id="t-bug" aria-controls="p-bug" aria-selected="true">UI bug report</button>
+    <button class="tab" role="tab" id="t-api" aria-controls="p-api" aria-selected="false">API bug report</button>
+    <button class="tab" role="tab" id="t-cases" aria-controls="p-cases" aria-selected="false">Test cases</button>
+    <button class="tab" role="tab" id="t-ai" aria-controls="p-ai" aria-selected="false">AI evaluation</button>
+  </div>
+
+  <div class="panel" role="tabpanel" id="p-bug" aria-labelledby="t-bug">
+    <div class="bug-head"><div><div class="bug-id">BUG-003 · Checkout · problem_user</div><h3>Last name field doesn't accept input at checkout</h3></div><div class="kind"><span class="chip fail">High severity</span><span class="chip">Priority: High</span></div></div>
+    <div class="stack">
+      <div class="grid2"><div class="box"><div class="label">Environment</div>Chrome (latest), Windows 11</div><div class="box"><div class="label">Impact</div>Blocks checkout completely for affected users</div></div>
+      <div><div class="label">Steps to reproduce</div><ol><li>Log in as problem_user and add any item to the cart.</li><li>Open the cart and click Checkout.</li><li>Type a first name, then type a last name.</li><li>Click Continue.</li></ol></div>
+      <div class="grid2"><div class="box exp"><div class="label">Expected</div>Both names are saved and the overview page opens.</div><div class="box act"><div class="label">Actual</div>The last name doesn't keep its value and "Last Name is required" is shown.</div></div>
+    </div>
+  </div>
+
+  <div class="panel" role="tabpanel" id="p-api" aria-labelledby="t-api" hidden>
+    <div class="bug-head"><div><div class="bug-id">API-BUG-002 · POST /booking</div><h3>Missing required fields return 500 instead of 400</h3></div><div class="kind"><span class="chip warn">Medium severity</span><span class="chip">Reproduces 5/5</span></div></div>
+    <div class="stack">
+      <pre>POST /booking
+Content-Type: application/json
+
+{ "firstname": "Test" }</pre>
+      <div class="grid2"><div class="box exp"><div class="label">Expected</div>400 Bad Request, with a message listing the missing fields.</div><div class="box act"><div class="label">Actual</div>500 Internal Server Error, with no details.</div></div>
+      <p>A simple validation mistake looks like a server crash, so the app can't tell users what to fix, and monitoring raises false alarms.</p>
+    </div>
+  </div>
+
+  <div class="panel" role="tabpanel" id="p-cases" aria-labelledby="t-cases" hidden>
+    <div class="scroll"><table>
+      <thead><tr><th>ID</th><th>Test case</th><th>Expected result</th><th>Type</th><th>Result</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">TC-01</td><td>Valid login</td><td>Products page opens</td><td><span class="chip">Functional</span></td><td class="ok">Pass</td></tr>
+        <tr><td class="mono">TC-02</td><td>Locked-out user</td><td>Clear "locked out" error</td><td><span class="chip">Negative</span></td><td class="ok">Pass</td></tr>
+        <tr><td class="mono">TC-06</td><td>Open products page while logged out</td><td>Redirected to login</td><td><span class="chip">Security</span></td><td class="ok">Pass</td></tr>
+        <tr><td class="mono">TC-16</td><td>Reload with items in cart</td><td>Items still in cart</td><td><span class="chip">Edge</span></td><td class="ok">Pass</td></tr>
+        <tr><td class="mono">TC-19</td><td>Order overview total</td><td>Equals sum of item prices</td><td><span class="chip">Functional</span></td><td class="ok">Pass</td></tr>
+        <tr><td class="mono">TC-23</td><td>Last name input (problem_user)</td><td>Last name accepted</td><td><span class="chip">Functional</span></td><td class="no">Fail · BUG-003</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="panel" role="tabpanel" id="p-ai" aria-labelledby="t-ai" hidden>
+    <div class="bug-head"><div><div class="bug-id">AI-012 · Support chatbot · Policy questions</div><h3>Chatbot invents a refund rule</h3></div><div class="kind"><span class="chip fail">Hallucination 0.84 (limit 0.30)</span></div></div>
+    <div class="stack">
+      <div class="grid2">
+        <div class="box"><div class="label">User asked</div>Can I get a refund after 45 days?</div>
+        <div class="box"><div class="label">Policy document says</div>Refunds are available within 30 days of purchase.</div>
+      </div>
+      <div class="box act"><div class="label">Chatbot answered</div>Yes, you can request a refund within 60 days.</div>
+      <pre>test_case = LLMTestCase(
+    input=question,
+    actual_output=chatbot.ask(question),
+    context=["Refunds are available within 30 days of purchase."],
+)
+assert_test(test_case, [HallucinationMetric(threshold=0.3)])</pre>
+      <p><b>Suggested fix:</b> answer policy questions only from the policy document, and say "I'm not sure" when it isn't covered.</p>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="section-head">
+    <span class="label">Process</span>
+    <h2>How a project runs</h2>
+  </div>
+  <ol class="steps">
+    <li><b>Understand</b><span>I read your requirements and ask about anything unclear before testing.</span></li>
+    <li><b>Plan</b><span>I list the flows and risks, and agree priorities with you.</span></li>
+    <li><b>Test</b><span>Manual, API or automated testing, depending on the package.</span></li>
+    <li><b>Report</b><span>Bugs with steps, evidence and severity, ordered by what to fix first.</span></li>
+    <li><b>Retest</b><span>I check the fixes, and the flows around them, before sign-off.</span></li>
+  </ol>
+</section>
+
+<section>
+  <div class="section-head">
+    <span class="label">Toolbox</span>
+    <h2>Tools, devices and certificates</h2>
+  </div>
+  <div class="toolbox">
+    <div class="tb"><div class="label">Tools</div><div class="tags"><span class="tag">Postman</span><span class="tag">Swagger</span><span class="tag">Playwright (JS)</span><span class="tag">JMeter</span><span class="tag">DeepEval</span><span class="tag">Jira</span><span class="tag">TFS</span><span class="tag">Asana</span><span class="tag">MySQL Workbench</span><span class="tag">GitHub Actions</span></div></div>
+    <div class="tb"><div class="label">Real devices</div><div class="tags"><span class="tag">iPhone 12 Pro · iOS 26</span><span class="tag">iPhone XR · iOS 18</span><span class="tag">Pixel 6 · Android 16</span><span class="tag">macOS</span><span class="tag">Windows</span></div></div>
+    <div class="tb"><div class="label">Certificates and education</div><div class="tags"><span class="tag">ISTQB CTFL</span><span class="tag">Scrum Fundamentals</span><span class="tag">Six Sigma Yellow Belt</span><span class="tag">BS Software Engineering, PUCIT</span></div></div>
+  </div>
+</section>
+
+<section class="closing">
+  <div><h2>Have something that needs testing?</h2><p>Send me a message on Upwork with a link to your app and what worries you most.</p></div>
+  <a class="btn" href="https://www.upwork.com/freelancers/~012e09f951295df9e4" target="_blank" rel="noopener">Hire me on Upwork</a>
+</section>
+
+<footer><span>Misbah H. · Senior QA Engineer</span><span>Available for freelance and contract-to-hire work</span></footer>
+
+</div>
+
+<script>
+(function(){
+  var tabs=document.querySelectorAll('.tab');
+  function show(t){
+    tabs.forEach(function(x){
+      var on=x===t; x.setAttribute('aria-selected',on?'true':'false');
+      document.getElementById(x.getAttribute('aria-controls')).hidden=!on;
+    });
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){show(t)});
+    t.addEventListener('keydown',function(e){
+      if(e.key==='ArrowRight'||e.key==='ArrowLeft'){
+        var n=tabs[(i+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length]; n.focus(); show(n);
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
